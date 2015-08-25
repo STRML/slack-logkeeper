@@ -1,5 +1,34 @@
-IRC Log Viewer
-=============
+Slack-Logkeeper
+===============
+
+This is a fork of Firebreath's [irc-logviewer](https://github.com/firebreath/irc-logviewer)
+that receives Slack webhooks to provide searchable history.
+
+This project consists of a very simple PHP webapp and NodeJS message receiver.
+It would probably be better to do this all in PHP, or all in Node, but I
+currently don't have the time.
+
+To run:
+
+* Copy this to a public htdocs directory so it can be run by apache or nginx.
+* Copy lib/config.ini-dist to lib/config.ini and modify the log directory. This example uses the defaults.
+* Open a separate port for the Slack webhook.
+* Create a webhook for each channel you wish to log and point it to your domain and port. (In the future, maybe we'll
+	do this via SQS so we can get all channels at once with a single hook)
+
+Then run the Slack scraper:
+
+```
+PORT=8000 OUTPUT_PATH=logs node index.js
+> Listening on port 8000
+```
+
+Enjoy!
+
+----
+
+Original README
+===============
 
 This was an IRC log parser written to make it possible to search IRC log files
 for the #firebreath channel on irc.freenode.net.
@@ -52,7 +81,7 @@ Example (if you currently save your logs in ~/irclogs/firebreath/):
 Directory structure should be in the form:
 
 	{servername}/{channelname}/{logfiles}
-	
+
 Log files must have the date in the filename in YYYYDDMM or YYYY-DD-MM format.
 
 Examples:
@@ -63,14 +92,14 @@ Examples:
 
 ### Log File Format
 
-Actual log lines must be in the form "{time} {user} {message}" (or 
+Actual log lines must be in the form "{time} {user} {message}" (or
 "{time} {message}" for system messages).
 
 Examples:
 
 	[08:01:04] <bob> Hello everyone!
 	[11:23] <dave_1|home> Hey
-	17:22 <sue> Hi 
+	17:22 <sue> Hi
 	18:50:17 *** Quits: Alex (~alex@host) (Remote host closed the connection)
 
 
@@ -80,11 +109,11 @@ Scalability/Performance
 It's been designed to support a range of log file formats, and specifically to
 need as little configuration as possible (hence not requiring a database).
 
-It works by parsing raw log files and recording keyword hits, using strpos() 
+It works by parsing raw log files and recording keyword hits, using strpos()
 for fast matching. In practice, this seems to be fast enough to allow parsing
 through ~6 years/(30MB+) worth of logs in less than 10 seconds.
 
-With a log directory structure of ./servername/channel/ adding additional 
+With a log directory structure of ./servername/channel/ adding additional
 servers / channels doesn't impact performance.
 
 
@@ -92,5 +121,5 @@ Contributing
 -------
 
 I'd love it if you'd like to help with bug reports, feature requests or code!
-I suggest joining us on irc://irc.freenode.net/%23firebreath or email 
+I suggest joining us on irc://irc.freenode.net/%23firebreath or email
 <iaincollins@firebreath.org>.

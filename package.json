@@ -1,0 +1,29 @@
+{
+  "name": "slack-logkeeper",
+  "version": "1.0.0",
+  "description": "Receives slack outgoing webhooks and logs to file segmented by channel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STRML/slack-logkeeper.git"
+  },
+  "keywords": [
+    "slack",
+    "logging"
+  ],
+  "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/STRML/slack-logkeeper/issues"
+  },
+  "homepage": "https://github.com/STRML/slack-logkeeper#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mkdirp": "^0.5.1",
+    "sprintf-js": "^1.0.3"
+  }
+}
