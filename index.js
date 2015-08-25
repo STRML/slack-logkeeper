@@ -9,6 +9,7 @@ var streams = {};
 // Constants
 var PORT = process.env.PORT || 4000;
 var OUTPUT_PATH = process.env.OUTPUT_PATH || 'logs';
+var DEBUG = process.env.DEBUG;
 
 // Server setup
 app.use(bodyParser.json()); // for parsing application/json
@@ -21,7 +22,7 @@ app.post('/', function (req, res) {
     if (err) return console.error(err);
     var stream = streams[outputPath] || (streams[outputPath] = fs.createWriteStream(outputPath, {'flags': 'a'}));
     stream.write(sprintf("[%s] <%s> %s\n", getTime(), req.body.user_name, req.body.text));
-    console.log(req.body);
+    if (DEBUG) console.log(req.body);
   });
 });
 

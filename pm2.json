@@ -1,0 +1,11 @@
+{
+  "apps" : [{
+    "name"        : "slack-receiver",
+    "script"      : "index.js",
+    "watch"       : true,
+    "cwd"         : "/var/www/slack-logkeeper",
+    "env": {
+        "PORT": "8000"
+    }
+  }]
+}
